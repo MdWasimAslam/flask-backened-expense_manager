@@ -1,14 +1,18 @@
-from flask import Flask
+from flask import Flask,Blueprint
+from Controllers.user_controller import user
+from Controllers.products_controller import products
+
 
 app = Flask(__name__)
 
+app.register_blueprint(user, url_prefix='/user')
+app.register_blueprint(products, url_prefix='/products')
+
+
 @app.route('/')
 def home():
-    return 'Hello, Wasim!'
+    return 'Home'
 
-@app.route('/about')
-def about():
-    return 'About'
 
 if __name__ == '__main__':
     app.run(debug=True)
