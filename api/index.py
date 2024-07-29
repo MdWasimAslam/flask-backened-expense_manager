@@ -1,17 +1,16 @@
-from flask import Flask
+from flask import Flask,render_template
 from Controllers.user_controller import user
-from Controllers.products_controller import products
-
+from Controllers.gemini_controller import gemini
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 app.register_blueprint(user, url_prefix='/user')
-app.register_blueprint(products, url_prefix='/products')
-
+app.register_blueprint(gemini, url_prefix='/gemini')
 
 @app.route('/')
 def home():
-    return 'Home'
+    return 'Welcome to the API'
 
 
 if __name__ == '__main__':

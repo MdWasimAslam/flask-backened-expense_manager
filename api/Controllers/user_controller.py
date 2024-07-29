@@ -8,7 +8,7 @@ auth = auth_model()
 
 
 @user.route('/getall', methods=['GET'])
-@auth.token_auth('/user/getall')
+@auth.token_auth()
 def user_getall_controller():
     return usrObj.user_getall_model()
 

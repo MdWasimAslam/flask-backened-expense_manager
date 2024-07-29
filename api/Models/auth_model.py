@@ -25,9 +25,10 @@ class auth_model:
    
    
    #Decorator to check if the user has access to the api endpoint
-    def token_auth(self,endpoint):
+    def token_auth(self,endpoint=""):
        def inner1(func):
            def inner2(*args):
+               endpoint = request.url_rule.rule
                authorisation = request.headers.get('Authorization')
                if re.match("^Bearer *([^ ]+) *$",authorisation,flags=0):
                     token = authorisation.split(' ')[1]
